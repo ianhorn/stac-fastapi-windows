@@ -15,3 +15,5 @@ RUN python -m pip install --no-cache-dir --user --upgrade pip && \
     python -m pip install -e ./stac_fastapi/types[dev] && \
     python -m pip install -e ./stac_fastapi/api[dev] && \
     python -m pip install -e ./stac_fastapi/extensions[dev]
+
+ENV PATH="C:\\Python;C:\\Python\\Scripts;C:\\Users\\ContainerUser\\AppData\\Roaming\\Python\\Python311\\Scripts;C:\\Users\\ContainerUser\\AppData\\Roaming\\Python\\Python311;%PATH%"
