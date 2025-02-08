@@ -13,7 +13,7 @@ RUN refreshenv && \
 
 FROM base as builder
 
-ENV PATH="C:/Python312;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/Program Files/pgsql/bin;%PATH%"
+ENV PATH="C:/Python312;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/ProgramData/chocolatey/bin;%PATH%"
 
 WORKDIR /app
 
