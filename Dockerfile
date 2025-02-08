@@ -8,12 +8,12 @@ RUN powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [Syst
 RUN refreshenv && \
     choco install git -y && \
     choco install psql -y  && \
-    choco install python312 && \
+    choco install python312 -y && \
     refreshenv
 
 FROM base as builder
 
-ENV PATH="C:/Program Files/Python312/bin;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/Program Files/pgsql/bin;%PATH%""
+ENV PATH="C:/Python312;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/Program Files/pgsql/bin;%PATH%"
 
 WORKDIR /app
 
