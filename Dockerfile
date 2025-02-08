@@ -1,16 +1,19 @@
-FROM python:3.11-slim as base
+FROM mcr.microsoft.com/windows/servercore:ltsc2022-amd64  as base
 
 # Any python libraries that require system libraries to be installed will likely
 # need the following packages in order to build
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y build-essential git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Refactor with Chocolatey
+RUN powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
-ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+RUN refreshenv && \
+    choco install git -y && \
+    choco install psql -y  && \
+    choco install python312 && \
+    refreshenv
 
 FROM base as builder
+
+ENV PATH="C:/Program Files/Python312/bin;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/Program Files/pgsql/bin;%PATH%""
 
 WORKDIR /app
 
