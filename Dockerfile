@@ -13,12 +13,13 @@ RUN refreshenv && \
 
 FROM base as builder
 
-ENV PATH="C:/Python312;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/ProgramData/chocolatey/bin;%PATH%"
+ENV PATH="C:/Python312;C:/Python312/Scripts;C:/Program Files/Git/bin;C/Program Files/Git/cmd;C:/ProgramData/chocolatey/bin;%PATH%"
 
 WORKDIR /app
 
 COPY . /app
 
-RUN python -m pip install -e ./stac_fastapi/types[dev] && \
+RUN python -m pip install --upgrade pip && \
+    python -m pip install -e ./stac_fastapi/types[dev] && \
     python -m pip install -e ./stac_fastapi/api[dev] && \
     python -m pip install -e ./stac_fastapi/extensions[dev]
